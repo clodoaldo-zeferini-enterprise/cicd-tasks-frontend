@@ -49,8 +49,8 @@ public class TasksController {
 		try {
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.postForObject(
-					getBackendURL() + "/tasks-backend/todo", todo, Object.class);			
-			model.addAttribute("sucess", "Sucess!");
+					getBackendURL() + "/todo", todo, Object.class);
+			model.addAttribute("success", "Success!");
 			return "index";
 		} catch(Exception e) {
 			Pattern compile = Pattern.compile("message\":\"(.*)\",");
@@ -78,6 +78,6 @@ public class TasksController {
 	private List<Todo> getTodos() {
 		RestTemplate restTemplate = new RestTemplate();
 		return restTemplate.getForObject(
-				getBackendURL() + "/tasks-backend/todo", List.class);
+				getBackendURL() + "/todo", List.class);
 	}
 }
