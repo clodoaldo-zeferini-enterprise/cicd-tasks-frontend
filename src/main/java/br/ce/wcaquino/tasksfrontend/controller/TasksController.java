@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.springframework.beans.factory.annotation.Value;
+import br.ce.wcaquino.tasksfrontend.configuration.AppSettings;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,25 +17,21 @@ import br.ce.wcaquino.tasksfrontend.model.Todo;
 
 @Controller
 public class TasksController {
-	
-	@Value("${backend.host}")
-	private String BACKEND_HOST;
 
-	@Value("${backend.port}")
-	private String BACKEND_PORT;
-	
-	@Value("${app.version}")
-	private String VERSION;
-	
+	String env = System.getenv("ENV");
+
+	@Autowired
+	private AppSettings appSettings;
+
 	public String getBackendURL() {
-		return "http://" + BACKEND_HOST + ":" + BACKEND_PORT;
+		return "http://" + appSettings.getBackend().getHost() + ":" + appSettings.getBackend().getPort();
 	}
 	
 	@GetMapping("")
 	public String index(Model model) {
 		model.addAttribute("todos", getTodos());
-		if(VERSION.startsWith("build"))
-			model.addAttribute("version", VERSION);
+		if(appSettings.getApplication().getVersion().startsWith("build"))
+			model.addAttribute("version", appSettings.getApplication().getVersion());
 		return "index";
 	}
 	
@@ -67,7 +64,7 @@ public class TasksController {
 	@GetMapping("delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.delete(getBackendURL() + "/tasks-backend/todo/" + id);			
+		restTemplate.delete(getBackendURL() + "/" + appSettings.getBackend().getContext()+ "/todo/" + id);
 		model.addAttribute("success", "Success!");
 		model.addAttribute("todos", getTodos());
 		return "index";

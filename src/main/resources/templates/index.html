@@ -28,8 +28,8 @@
 						<tr th:each="todo : ${todos}">
 							<td th:text="${todo.task}"></td>
 							<td th:text="${todo.dueDate}"></td>
-							<td><a class="btn btn-outline-danger btn-sm"
-									th:href="@{/delete/{id}(id=${todo.id})}">Remove</a>
+							<td>
+								<a class="btn btn-outline-danger btn-sm" th:href="@{/delete/{id}(id=${todo.id})}">Remove</a>
 							</td>
 						</tr>
 					</tbody>
