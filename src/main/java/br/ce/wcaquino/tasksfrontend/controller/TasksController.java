@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import br.ce.wcaquino.tasksfrontend.configuration.AppSettings;
+import br.ce.wcaquino.tasksfrontend.configuration.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,11 +18,48 @@ import br.ce.wcaquino.tasksfrontend.model.Todo;
 @Controller
 public class TasksController {
 
-	String env = System.getenv("ENV");
-
 	@Autowired
 	private AppSettings appSettings;
 
+
+	/*
+	public TasksController() {
+		String env = System.getenv("ENV");
+
+		env = "IDE";
+
+		if (env == "IDE")
+		{
+			appSettings = new AppSettings();
+			appSettings.setApplication(dev.getApplication());
+			appSettings.setBackend(dev.getBackend());
+			appSettings.setEnvironment(dev.getEnvironment());
+			appSettings.setServer(dev.getServer());
+		} else if (env == "DEV")
+		{
+			appSettings = new AppSettings();
+			appSettings.setApplication(dev.getApplication());
+			appSettings.setBackend(dev.getBackend());
+			appSettings.setEnvironment(dev.getEnvironment());
+			appSettings.setServer(dev.getServer());
+		} else if (env == "HOM")
+		{
+			appSettings = new AppSettings();
+			appSettings.setApplication(hom.getApplication());
+			appSettings.setBackend(hom.getBackend());
+			appSettings.setEnvironment(hom.getEnvironment());
+			appSettings.setServer(hom.getServer());
+		} else if (env == "PRO")
+		{
+			appSettings = new AppSettings();
+			appSettings.setApplication(pro.getApplication());
+			appSettings.setBackend(pro.getBackend());
+			appSettings.setEnvironment(pro.getEnvironment());
+			appSettings.setServer(pro.getServer());
+		}
+	}
+
+	*/
 	public String getBackendURL() {
 		return "http://" + appSettings.getBackend().getHost() + ":" + appSettings.getBackend().getPort();
 	}

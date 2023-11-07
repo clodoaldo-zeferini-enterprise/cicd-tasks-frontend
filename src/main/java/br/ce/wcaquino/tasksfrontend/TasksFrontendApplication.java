@@ -1,8 +1,5 @@
 package br.ce.wcaquino.tasksfrontend;
 
-import br.ce.wcaquino.tasksfrontend.configuration.AppSettings;
-import br.ce.wcaquino.tasksfrontend.configuration.Application;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

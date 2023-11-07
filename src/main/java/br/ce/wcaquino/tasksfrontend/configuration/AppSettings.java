@@ -1,23 +1,13 @@
 package br.ce.wcaquino.tasksfrontend.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.ConstructorBinding;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.annotation.AliasFor;
-import org.springframework.core.env.AbstractEnvironment;
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.StandardEnvironment;
+import org.springframework.stereotype.Component;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
 
-//@ConstructorBinding
-@Configuration
-@ConfigurationProperties( prefix = "appsettings" )
+
+@Component
+@ConfigurationProperties(prefix = "appsettings")
 public class AppSettings {
     public String getEnvironment() {
         return Environment;
@@ -56,4 +46,5 @@ public class AppSettings {
     public void setServer(Server server) {
         this.server = server;
     }
+
 }
